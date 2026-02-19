@@ -10,7 +10,10 @@ interface ToggleProps {
 }
 
 const Toggle = ({ value, onChange, size = 1 }: ToggleProps) => {
+    /* Handle clicks calls the onChange function 
+    Which is passed in as a prop from the parent componet */
     const handleClick = () => {
+        /* onCHnage is called with the opposite of the current value */
         onChange(!value);
     };
 
