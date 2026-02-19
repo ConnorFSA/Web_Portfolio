@@ -1,0 +1,28 @@
+.toggle-accent {
+    width: calc(45px * var(--toggle-size, 1));
+    height: calc(25px * var(--toggle-size, 1));
+    border-radius: 999px;
+
+    padding: calc(3px * var(--toggle-size, 1));
+    cursor: pointer;
+
+    background: var(--muted);
+    transition: background 0.3s ease;
+}
+
+.toggle-accent.on {
+    background: var(--accent);
+}
+
+.toggle-dot {
+    width: calc(18px * var(--toggle-size, 1));
+    height: calc(18px * var(--toggle-size, 1));
+
+    background: var(--text);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.toggle-accent.on .toggle-dot {
+    transform: translateX(calc(20px * var(--toggle-size, 1)));
+}
