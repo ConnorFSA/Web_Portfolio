@@ -1,0 +1,57 @@
+Table projects {
+  pk_project integer
+  name string
+  start_date date
+  thumbnail_image string
+}
+
+Table project_categories {
+  fk_project int
+  fk_category int
+}
+
+Table categories {
+  pk_category int
+  category string
+}
+
+Table images {
+  pk_image integer
+  fk_project integer
+  image string
+  alt_text string
+}
+
+Table languages {
+  pk_language integer
+  language string
+  image_icon string
+}
+
+Table project_summaries {
+  pk_project_summary integer
+  fk_project integer
+  summary string
+}
+
+Table project_descriptions{
+  pk_project_description integer
+  fk_project integer
+  description string
+}
+
+Table project_languages {
+  fk_project integer
+  fk_language integer
+}
+
+
+Ref: projects.pk_project < project_languages.fk_project
+Ref: projects.pk_project < images.fk_project
+Ref: projects.pk_project - project_summaries.fk_project
+Ref: projects.pk_project - project_descriptions.fk_project
+Ref: projects.pk_project < project_categories.fk_project
+
+Ref: categories.pk_category < project_categories.fk_category
+
+Ref: languages.pk_language < project_languages.fk_language
