@@ -7,8 +7,15 @@ CREATE TABLE IF NOT EXISTS projects (
 
 CREATE TABLE IF NOT EXISTS categories (
   pk_category  INTEGER PRIMARY KEY AUTOINCREMENT,
-  category     TEXT NOT NULL
+  category     TEXT NOT NULL,
+  fk_project   INTEGER NOT NULL,
+  FOREIGN KEY (fk_project) REFERENCES projects(pk_project)
 );
+
+CREATE TABLE IF NOT EXISTS types (
+  pk_type     INTEGER PRIMARY KEY AUTOINCREMENT,
+  type        TEXT NOT NULL
+)
 
 CREATE TABLE IF NOT EXISTS project_categories (
   fk_project   INTEGER NOT NULL,

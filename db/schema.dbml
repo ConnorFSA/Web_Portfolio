@@ -5,6 +5,12 @@ Table projects {
   thumbnail_image string
 }
 
+Table types {
+  pk_type integer
+  type string
+  fk_project integer
+}
+
 Table project_categories {
   fk_project int
   fk_category int
@@ -51,6 +57,7 @@ Ref: projects.pk_project < images.fk_project
 Ref: projects.pk_project - project_summaries.fk_project
 Ref: projects.pk_project - project_descriptions.fk_project
 Ref: projects.pk_project < project_categories.fk_project
+Ref: projects.pk_project - types.fk_project
 
 Ref: categories.pk_category < project_categories.fk_category
 
