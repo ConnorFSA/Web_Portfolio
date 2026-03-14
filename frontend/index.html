@@ -7,12 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>frontend</title>
 
-  <!-- Set dark mode based on saved preference before react loads -->
+  <!-- Set dark mode and theme based on saved preference before react loads -->
   <script>
     const savedMode = localStorage.getItem("theme-mode");
     if (savedMode === "dark") {
       document.documentElement.setAttribute("data-mode", "dark");
     }
+    const savedTheme = loclaStorage.getItem("theme-type");
+    document.documentElement.setAttribute("data-theme", {savedTheme})
   </script>
 
 </head>
