@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import "./DropDownSelector.css";
 
 interface DropDownProps {
     options: Array<string>;
@@ -33,17 +34,17 @@ function DropDownSelector({ options, option, setOption, size = 1 }: DropDownProp
             ref={dropDownRef}
             className="boundry"
         >
-            <div className="current-item">Theme: {option}</div>
-            <button
-                className="drop-button"
-                // swap the state of isOpen
-                onClick={() => { setIsOpen(!isOpen) }}
-            >
-            </button>
-
+            <div className="selector capsule">
+                <div className="current-item">Theme: {option}</div>
+                <button
+                    className="drop-button"
+                    // swap the state of isOpen
+                    onClick={() => { setIsOpen(!isOpen) }}
+                ></button>
+            </div>
             {isOpen && (
                 // create new list element for each item in - current selection
-                <div className="item-list">
+                <ul className="item-list capsule">
                     {options.map((item) => {
                         if (item == option) {
                             return null;
@@ -51,7 +52,7 @@ function DropDownSelector({ options, option, setOption, size = 1 }: DropDownProp
                             return (
                                 <li
                                     key={item}
-                                    className="item"
+                                    className="item capsule"
                                     // set the current selection
                                     // The current option is set by the parent
                                     onClick={() => {
@@ -64,7 +65,7 @@ function DropDownSelector({ options, option, setOption, size = 1 }: DropDownProp
                             );
                         }
                     })}
-                </div>
+                </ul>
             )}
         </div>
     );

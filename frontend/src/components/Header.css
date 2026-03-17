@@ -16,6 +16,13 @@
   position: relative;
 }
 
+.theme-toggle-wrapper {
+  position: absolute;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+}
+
 .nav {
   display: flex;
   gap: 2rem;

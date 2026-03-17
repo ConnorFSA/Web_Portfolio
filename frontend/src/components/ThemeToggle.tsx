@@ -73,7 +73,7 @@ function ThemeToggle() {
     }
 
     return (
-        <div>
+        <div className="theme-toggle">
             <Toggle value={isDark} onChange={handleToggle} />
             <DropDownSelector option={theme} options={GetThemeList()} setOption={changeTheme}/>
         </div>

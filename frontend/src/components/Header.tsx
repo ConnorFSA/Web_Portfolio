@@ -33,7 +33,9 @@ function Header() {
             Projects
           </NavLink>
         </nav>
-        <ThemeToggle />
+        <div className="theme-toggle-wrapper">
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
