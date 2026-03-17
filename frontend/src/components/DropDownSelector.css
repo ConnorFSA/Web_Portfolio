@@ -1,51 +1,51 @@
 .boundry {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    flex-wrap: nowrap;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 .selector {
-    padding: var(--sp-2);
-    background-color: var(--muted);
+  padding: var(--sp-2);
+  background-color: var(--muted);
 }
 
-.current-item{
-    background-color: var(--muted);
-    padding: var(--sp-1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
+.current-item {
+  background-color: var(--muted);
+  padding: var(--sp-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
 }
 
 .drop-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    content: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  content: none;
 
-    height: 2rem;
-    width: 2rem;
-    border: none;
+  height: 2rem;
+  width: 2rem;
+  border: none;
 
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .item-list {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 999;
-    min-width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 999;
+  min-width: 100%;
 
-    background-color: var(--accent);
-    padding: var(--sp-2);
-    list-style: none;
+  background-color: var(--accent);
+  padding: var(--sp-2);
+  list-style: none;
 }
 
 .item {
-    justify-content: center;
-    background-color: var(--accent-2);
+  justify-content: center;
+  background-color: var(--accent-2);
 }

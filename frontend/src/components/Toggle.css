@@ -1,33 +1,34 @@
 .toggle-accent {
-    width: calc(45px * var(--toggle-size, 1));
-    height: calc(25px * var(--toggle-size, 1));
-    border-radius: 999px;
+  width: calc(45px * var(--toggle-size, 1));
+  height: calc(25px * var(--toggle-size, 1));
+  border-radius: 999px;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    padding: calc(var(--sp-1) * var(--toggle-size, 1));
-    cursor: pointer;
+  padding: calc(var(--sp-1) * var(--toggle-size, 1));
+  cursor: pointer;
 
-    background: var(--muted);
-    transition: background 0.3s ease;
+  background: var(--muted);
+  transition: background 0.3s ease;
 }
 
 .toggle-accent.on {
-    background: var(--accent);
+  background: var(--accent);
 }
 
 .toggle-dot {
-    aspect-ratio: 1;
-    height: 100%;
+  aspect-ratio: 1;
+  height: 100%;
 
-    background: var(--text);
-    border-radius: 50%;
-    transition: transform 0.2s ease;
+  background: var(--text);
+  border-radius: 50%;
+  transition: transform 0.2s ease;
 }
 
 .toggle-accent.on .toggle-dot {
-    transform: translateX(calc(
-        (45px - 25px) * var(--toggle-size, 1)
+  transform: translateX(calc(
+    (45px - 25px) * 
+    var(--toggle-size, 1)
     ));
 }

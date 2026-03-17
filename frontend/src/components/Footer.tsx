@@ -1,19 +1,19 @@
-import  "./Footer.css";
+import "./Footer.css";
 
 function Footer() {
-    return (
-        <footer className="footer">
-            <div>
-                <text> 2026 My Portfolio</text>
-            </div>
-            <div>
-                <text> Second Div</text>
-            </div>
-            <div>
-                <text> Third Div</text>
-            </div>
-        </footer>
-    );
+  return (
+    <footer className="footer">
+      <div>
+        <p> 2026 My Portfolio</p>
+      </div>
+      <div>
+        <p> Second Div</p>
+      </div>
+      <div>
+        <p> Third Div</p>
+      </div>
+    </footer>
+  );
 }
 
 export default Footer;
