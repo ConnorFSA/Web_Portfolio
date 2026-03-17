@@ -13,8 +13,8 @@
     if (savedMode === "dark") {
       document.documentElement.setAttribute("data-mode", "dark");
     }
-    const savedTheme = loclaStorage.getItem("theme-type");
-    document.documentElement.setAttribute("data-theme", {savedTheme})
+    const savedTheme = localStorage.getItem("theme-type");
+    document.documentElement.setAttribute("data-theme", savedTheme);
   </script>
 
 </head>
