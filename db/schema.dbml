@@ -3,6 +3,7 @@ Table projects {
   name string
   start_date date
   thumbnail_image string
+  git_url string
 }
 
 Table types {

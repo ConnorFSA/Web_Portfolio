@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "api": "cd ../backend/app && ../../.venv/bin/flask --app main.py run"
+    "api": "cd ../backend/app && python main.py"
   },
   "dependencies": {
     "react": "^19.2.0",
