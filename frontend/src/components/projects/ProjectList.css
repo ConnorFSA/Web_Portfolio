@@ -1,0 +1,14 @@
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  align-items: start;
+  padding: 1rem;
+}
+
+/* Keep cards aligned to tallest card */
+.project-grid > * {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

@@ -6,13 +6,13 @@ export interface Project {
   slug: string;
 
   type: Type;
-  git_url: string;
+  url: string;
 
   start_date: Date;
   end_date: Date;
 
   summary: string;
-  description: string;
+  descriptions: Descriptions[];
 
   categories: Category[];
   languages: Language[];
@@ -39,11 +39,14 @@ export interface ProjectBrief {
   thumbnail: ProjectThumbnail;
 }
 
+export interface Descriptions {
+  description: string;
+}
+
 export interface ProjectImage {
   id: number;
-  url: string;
+  image: string;
   alt_text: string;
-  display_order: number;
 }
 
 export interface ProjectThumbnail {

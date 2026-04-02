@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ThemeToggle.css";
-import DropDownSelector from "./DropDownSelector";
-import Toggle from "./Toggle";
+import DropDownSelector from "./generic/DropDownSelector";
+import Toggle from "./generic/Toggle";
 
 function GetThemeList() {
   // Create new set Class instance, Set ignores duplicates!

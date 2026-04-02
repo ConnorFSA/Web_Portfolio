@@ -28,10 +28,10 @@ def get_categories_for_project(db, project_id: int) -> list:
 # returns a list of images associated with a specific project, including alt text
 def get_images_for_project(db, project_id: int) -> list:
     rows = db.execute("""
-        SELECT pk_image, image, alt_text, display_order
+        SELECT pk_image, image, alt_text
         FROM images
         WHERE fk_project = ?
-        ORDER BY display_order
+        ORDER BY pk_image
     """, (project_id,)).fetchall()
     return [dict(row) for row in rows]
 
@@ -88,9 +88,9 @@ def get_project(slug: str):
     db = get_db()
 
     row = db.execute("""
-        SELECT pk_project, name, slug, summary, status,
-               thumbnail_image, github_url, live_url,
-               display_order, start_date, end_date
+        SELECT pk_project, name, slug, summary,
+            thumbnail_image, url,
+            start_date, end_date
         FROM projects
         WHERE slug = ?
     """, (slug,)).fetchone()
@@ -108,5 +108,6 @@ def get_project(slug: str):
     project['categories'] = get_categories_for_project(db, project_id)
     project['images'] = get_images_for_project(db, project_id)
     project['type'] = get_type_for_project(db, project_id)
+    project['thumbnail'] = {'url': project.pop('thumbnail_image'), 'alt_text': f"{project['name']} thumbnail"}
 
     return jsonify(project)
