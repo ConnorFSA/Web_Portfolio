@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, abort
-from db import get_db
+from app.db import get_db
 
 projects_bp = Blueprint('projects', __name__, url_prefix='/api/projects')
 
@@ -72,7 +72,7 @@ def get_projects():
         # Attach related data for each project using the helper functions.
         # easier to read instead of large SQL query with multiple joins
         project['id'] = project.pop('pk_project')
-        project['thumbnail'] = {'url': project.pop('thumbnail_image'), 'alt_text': f"{project['name']} thumbnail"}
+        project['thumbnail'] = {'url': project.pop('thumbnailredownload_image'), 'alt_text': f"{project['name']} thumbnail"}
         # Attach related data
         project['languages'] = get_languages_for_project(db, project_id)
         project['categories'] = get_categories_for_project(db, project_id)
@@ -111,3 +111,33 @@ def get_project(slug: str):
     project['thumbnail'] = {'url': project.pop('thumbnail_image'), 'alt_text': f"{project['name']} thumbnail"}
 
     return jsonify(project)
+
+# returns the breif detials for a specific project from the returned slug
+@projects_bp.get('/<slug>/brief')
+def get_project_brief(slug: str):
+    db = get_db()
+    
+    row = db.execute("""
+        SELECT pk_project, name, slug, summary,
+            thumbnail_image, start_date, end_date
+        FROM projects
+        WHERE slug = ?
+    """, (slug,)).fetchone()
+    
+    if row is None:
+        abort (404, description=f"No project found with slug '{slug}'")
+        
+    project = dict(row)
+    project_id = project['pk_project']
+    # Attach related data for each project using the helper functions.
+    # easier to read instead of large SQL query with multiple joins
+    project['id'] = project.pop('pk_project')
+    project['thumbnail'] = {'url': project.pop('thumbnail_image'), 'alt_text': f"{project['name']} thumbnail"}
+    # Attach related data
+    project['languages'] = get_languages_for_project(db, project_id)
+    project['categories'] = get_categories_for_project(db, project_id)
+    type_val = get_type_for_project(db, project_id)
+    project['type'] = {'type': type_val} if type_val else None
+    
+    return jsonify(project)
+    

@@ -1,0 +1,52 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-grow: 1;
+  gap: var(--sp-4);
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.skill-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 2rem auto;
+  width: 100%;
+  max-width: var(--container-width);
+}
+
+.skill-section {
+  flex: 1 1 300px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skill-heading {
+  margin: 0 0 1rem 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+}
+
+.social-links {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.social-links:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px var(--shadow-lg);
+}

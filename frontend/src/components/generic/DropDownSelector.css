@@ -30,7 +30,7 @@
   width: 2rem;
   border: none;
 
-  border-radius: 50%;
+  border-radius: var(--radius-full);
 }
 
 .item-list {

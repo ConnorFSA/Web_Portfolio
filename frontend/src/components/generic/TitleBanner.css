@@ -1,0 +1,57 @@
+.title-banner {
+  margin: 0 auto;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.title-banner--left {
+  flex-direction: row-reverse;
+}
+
+.title-banner--right {
+  flex-direction: row;
+}
+
+.text-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--muted);
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--text);
+}
+
+.title-image {
+  flex: 1;
+  max-width: 40%;
+  aspect-ratio: 1 / 1;
+  max-height: 300px;
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+}

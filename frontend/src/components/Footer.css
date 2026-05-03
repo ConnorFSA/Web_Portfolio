@@ -3,5 +3,5 @@
   align-items: center;
   justify-content: center;
   background-color: var(--bg-elevated);
-  box-shadow: 0 -2px 4px var(--border);
+  box-shadow: 0 -2px 4px var(--shadow);
 }

@@ -23,3 +23,9 @@ export async function getProjectBySlug(slug: string): Promise<ProjectTypes.Proje
   const response = await fetch(`${BASE_URL}/projects/${slug}`);
   return handleResponse<ProjectTypes.Project>(response);
 }
+
+// Fetches and returns brief data for a project by slug
+export async function getProjectBriefBySlug(slug: string): Promise<ProjectTypes.ProjectBrief> {
+  const response = await fetch(`${BASE_URL}/projects/${slug}/brief`);
+  return handleResponse<ProjectTypes.ProjectBrief>(response);
+}

@@ -1,9 +1,12 @@
 import ProjectList from '../components/projects/ProjectList';
+import TitleBanner from '../components/generic/TitleBanner.tsx';
 
 export default function Projects() {
   return (
     <div>
-      <h1>Projects Page</h1>
+      <TitleBanner
+        title='Projects'
+      />
       <ProjectList />
     </div>
   );

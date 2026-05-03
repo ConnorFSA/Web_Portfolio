@@ -1,7 +1,7 @@
 .toggle-accent {
   width: calc(45px * var(--toggle-size, 1));
   height: calc(25px * var(--toggle-size, 1));
-  border-radius: 999px;
+  border-radius: var(--radius-full);
 
   display: flex;
   align-items: center;

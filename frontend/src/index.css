@@ -1,8 +1,6 @@
 :root {
   /* Core color tokens (fallback/default theme) */
   --bg: #ffffff;
-  /* Core color tokens (fallback/default theme) */
-  --bg: #ffffff;
   --bg-elevated: #f8fafc;
   --bg-muted: #f1f5f9;
 
@@ -10,10 +8,19 @@
   --muted: #6b7280;
   --accent: #0ea5e9;
   --accent-2: #7c3aed;
-  --border: #e6e6f0;
+  --border: #d4d4e0;
+  --border-muted: #e6e6f0;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow-lg: rgba(0, 0, 0, 0.12);
+  --overlay: rgba(0, 0, 0, 0.18);
+  --overlay-lg: rgba(0, 0, 0, 0.28);
+  --primary: #f1f5f9;
+  --primary-hover: #e2e8f0;
 
   /* Layout tokens */
-  --radius: 8px;
+  --radius: 12px;
+  --radius-sm: 4px;
+  --radius-full: 999px;
   --sp-1: 4px;
   --sp-2: 8px;
   --sp-3: 16px;
@@ -30,7 +37,14 @@
   --muted: #9aa6b2;
   --accent: #0ea5e9;
   --accent-2: #7c3aed;
-  --border: #12203a;
+  --border: #2a4a6a;
+  --border-muted: #1a2a4a;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-lg: rgba(0, 0, 0, 0.4);
+  --overlay: rgba(0, 0, 0, 0.5);
+  --overlay-lg: rgba(0, 0, 0, 0.65);
+  --primary: #1a2a3a;
+  --primary-hover: #2a3a4a;
 }
 
 /* solar */
@@ -42,7 +56,14 @@
   --muted: #667085;
   --accent: #ffb86b;
   --accent-2: #ff7ab6;
-  --border: #e9e6e1;
+  --border: #d9d4cd;
+  --border-muted: #e9e6e1;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow-lg: rgba(0, 0, 0, 0.12);
+  --overlay: rgba(0, 0, 0, 0.18);
+  --overlay-lg: rgba(0, 0, 0, 0.28);
+  --primary: #f8f5f2;
+  --primary-hover: #eee9e1;
 }
 
 /* Solar dark */
@@ -54,7 +75,14 @@
   --muted: #9aa6b2;
   --accent: #ffb86b;
   --accent-2: #ff7ab6;
-  --border: #12203a;
+  --border: #2a4a6a;
+  --border-muted: #1a2a4a;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-lg: rgba(0, 0, 0, 0.4);
+  --overlay: rgba(0, 0, 0, 0.5);
+  --overlay-lg: rgba(0, 0, 0, 0.65);
+  --primary: #1a2a3a;
+  --primary-hover: #2a3a4a;
 }
 
 /* Mint */
@@ -66,7 +94,14 @@
   --muted: #5b6b68;
   --accent: #10b981; /* mint/emerald */
   --accent-2: #06b6d4; /* teal */
-  --border: #e6f0ec;
+  --border: #c4dcd6;
+  --border-muted: #e6f0ec;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow-lg: rgba(0, 0, 0, 0.12);
+  --overlay: rgba(0, 0, 0, 0.18);
+  --overlay-lg: rgba(0, 0, 0, 0.28);
+  --primary: #f3faf7;
+  --primary-hover: #e6f0ec;
 }
 
 /* Mint dark */
@@ -78,7 +113,14 @@
   --muted: #9bb6b1;
   --accent: #10b981;
   --accent-2: #06b6d4;
-  --border: #0f2b2a;
+  --border: #1a4a42;
+  --border-muted: #0f2b2a;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-lg: rgba(0, 0, 0, 0.4);
+  --overlay: rgba(0, 0, 0, 0.5);
+  --overlay-lg: rgba(0, 0, 0, 0.65);
+  --primary: #0f2b2a;
+  --primary-hover: #1a3a38;
 }
 
 /* Base element rules */
@@ -97,6 +139,15 @@ body {
 .app { min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); color: var(--text); }
 main { flex: 1 0 auto; }
 .container { width: 100%; max-width: var(--container-width); margin: 0 auto; padding: 0 var(--sp-3); }
+
+/* Shared card/border utility */
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px var(--shadow);
+  background-color: var(--bg-elevated);
+  padding: var(--sp-3)
+}
 
 .capsule {
   border-radius: 999px;

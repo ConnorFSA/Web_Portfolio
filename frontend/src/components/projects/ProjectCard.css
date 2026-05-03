@@ -1,17 +1,17 @@
-.card {
+.project-card {
   background-color: var(--bg-elevated);
-  border: 1px solid var(--border-muted);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px var(--shadow);
   overflow: hidden;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
   width: 100%;
   height: 100%;
 }
 
-.card:hover {
+.project-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 6px 14px var(--shadow-lg);
 }
 
 .project-card-link {
@@ -26,29 +26,30 @@
 .thumbnail-image {
   width: 100%;
   height: 140px;
-  object-fit: cover;
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
 }
 
-.card > .details {
+.project-card > .details {
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
-  padding: 0.75rem;
+  gap: 0.45rem;
+  padding: 0.7rem;
 }
 
 .project-name {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .project-summary {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--muted);
-  line-height: 1.3;
-  max-height: 3.9rem;
+  line-height: 1.35;
+  max-height: 3.6rem;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -56,31 +57,42 @@
 .meta-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
 }
 
-.meta-group p {
-  margin: 0 0 0.25rem 0;
+.tag-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 120px;
+  flex: 1 1 180px;
+}
+
+.tag-section--type {
+  flex: 1 1 100%;
+}
+
+.tag-section-heading {
+  margin: 0;
   font-size: 0.75rem;
   color: var(--muted);
-  font-weight: 600;
-}
-
-.project-type,
-.categories-list,
-.languages-list {
-  margin-top: 0.3rem;
-}
-
-.project-type > p,
-.categories-list > p,
-.languages-list > p {
-  margin-bottom: 0.2rem;
+  font-weight: 700;
 }
 
 .tag-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
-  margin-top: 0.2rem;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+@media (max-width: 620px) {
+  .tag-section {
+    width: 100%;
+  }
+
+  .tag-section--type {
+    width: 100%;
+  }
 }

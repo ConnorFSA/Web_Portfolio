@@ -5,7 +5,7 @@ export interface Project {
   name: string;
   slug: string;
 
-  type: Type;
+  type: string;
   url: string;
 
   start_date: Date;

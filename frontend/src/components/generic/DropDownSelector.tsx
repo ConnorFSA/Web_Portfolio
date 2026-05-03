@@ -5,10 +5,9 @@ interface DropDownProps {
   options: Array<string>;
   option: string;
   setOption: (option: string) => void;
-  size?: number;
 }
 
-function DropDownSelector({ options, option, setOption, size = 1 }: DropDownProps) {
+function DropDownSelector({ options, option, setOption }: DropDownProps) {
   const dropDownRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 

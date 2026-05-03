@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
-from db import close_db
-from projects import projects_bp
+from app.db import close_db
+from app.projects import projects_bp
 
 app = Flask(__name__)
 CORS(app)
