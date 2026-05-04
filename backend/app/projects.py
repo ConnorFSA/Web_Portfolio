@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, abort
 from app.db import get_db
 
-projects_bp = Blueprint('projects', __name__, url_prefix='/api/projects', strict_slashes=False)
+projects_bp = Blueprint('projects', __name__, url_prefix='/api/projects')
 
 # Helper functions for common data
 
@@ -54,7 +54,7 @@ def get_descriptions_for_project(db, project_id: int) -> list:
 # Routes
 
 # returns a list of projects with the minimal data needed for the project cards
-@projects_bp.get('/')
+@projects_bp.get('')
 def get_projects():
     db = get_db()
 
