@@ -1,6 +1,6 @@
 import type * as ProjectTypes from '../types/project.types';
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 // Generic Error handling functions for API responses
 async function handleResponse<T>(response: Response): Promise<T> {
