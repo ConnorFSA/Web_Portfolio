@@ -10,6 +10,7 @@ on:
       - 'frontend/package*.json'
       - 'frontend/vite.config.*'
       - 'frontend/tsconfig.*'
+  workflow_dispatch: 
 
 jobs:
   build-and-deploy:
