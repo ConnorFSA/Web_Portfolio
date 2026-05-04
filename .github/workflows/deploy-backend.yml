@@ -1,0 +1,33 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - 'deploy/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH, update deploy script, and run it
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+            cd /home/ubuntu/Web_Portfolio
+
+            # Pull the deploy folder first so we always run the latest version of the deploy script
+            git fetch origin main
+            git checkout origin/main -- deploy/
+
+            # Make sure the script is executable
+            chmod +x deploy/deploy-backend.sh
+
+            #Hand off to the deploy script
+            bash deploy/deploy-backend.sh
