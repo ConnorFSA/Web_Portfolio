@@ -72,7 +72,7 @@ def get_projects():
         # Attach related data for each project using the helper functions.
         # easier to read instead of large SQL query with multiple joins
         project['id'] = project.pop('pk_project')
-        project['thumbnail'] = {'url': project.pop('thumbnailredownload_image'), 'alt_text': f"{project['name']} thumbnail"}
+        project['thumbnail'] = {'url': project.pop('thumbnail_image'), 'alt_text': f"{project['name']} thumbnail"}
         # Attach related data
         project['languages'] = get_languages_for_project(db, project_id)
         project['categories'] = get_categories_for_project(db, project_id)
