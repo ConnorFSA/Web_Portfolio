@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, abort
 from app.db import get_db
 
-projects_bp = Blueprint('projects', __name__, url_prefix='/api/projects')
+projects_bp = Blueprint('projects', __name__, url_prefix='/api/projects', strict_slashes=False)
 
 # Helper functions for common data
 
