@@ -11,7 +11,8 @@ BASE_DIR = os.path.dirname(  # /home/ubuntu/Web_Portfolio
     )
 )
 
-DATABASE = os.path.join(BASE_DIR, 'database', 'portfolio.db')
+DATABASE = os.path.join(BASE_DIR, 'db', 'projects.db')
+
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(DATABASE)
