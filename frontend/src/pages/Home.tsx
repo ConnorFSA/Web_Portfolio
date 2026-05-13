@@ -7,7 +7,7 @@ import NameTag from '../components/generic/NameTag.tsx';
 
 
 export default function Home() {
-  const featureProject1 = useProjectBrief('project-alpha');
+  const featureProject1 = useProjectBrief('web-portfolio');
   const featureProject2 = useProjectBrief('project-beta');
   const featureProject3 = useProjectBrief('project-gamma');
 
@@ -22,22 +22,23 @@ export default function Home() {
       <div className='content'>
         <TitleBanner
           title='Connors Work Portfolio'
-          subtitle='Welcome to my website'
-          description='Built using React, Typescript, Python, Flask and SQLite. 
-          This portfolio showcases a selection of my projects, highlighting my skills and experience in sotware development.
-          This website is will be regularly updated not only with new projects and content, but also with improvements to the design and functionality.
-          Feel free to explore and check back more often to see the latest updates and additions.'
+          subtitle='Welcome to my portfolio'
+          description='A curated collection of the projects I have built across web development, 
+          graphics programming, and software engineering. I am a developer with a passion for building things from the ground up, 
+          whether that is a full-stack web application, a custom rendering engine, or the infrastructure that keeps it all running. 
+          This site is built with React, TypeScript, Flask, and SQLite, and is continuously updated with new projects, content, and improvements to the site itself.'
           imageUrl='https://picsum.photos/300/300' />
       </div>
 
       <div className="content">
         <TitleBanner
           title='Personal Summary'
-          description='I am a software developer with a Bachelor of Information Technology from the University of South Australia,
-           specialising in Games and entertainment design. I have experience in a range of programming Languages and project types.
-           I am passionate about my work and am always looking for new opportunities to learn and grow as a developer,
-           traits accentuated by my work ethic and dedication to learning.
-           '
+          description='I am a software developer with a Bachelor of Information Technology from the University of South Australia, 
+          specialising in Games and Entertainment Design. My experience spans a range of programming languages, project types, 
+          and the full development lifecycle, from writing application logic to configuring the infrastructure that serves it in production. 
+          I am driven by a genuine curiosity for how things work under the hood, 
+          and I take pride in building projects from the ground up with a focus on quality, 
+          maintainability, and continuous improvement.'
           imageUrl='https://picsum.photos/300/300'
           imagePosition='left'
           imageAlt='' />

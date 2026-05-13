@@ -1,0 +1,8 @@
+JavaScript,javascript
+Python,python
+TypeScript,typescript
+React,react
+Java,openjdk
+CSS,css
+SQL,
+HTML,html5

@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "api": "cd ../backend/app && python main.py"
+    "api": "cd ../backend && python -m app.main"
   },
   "dependencies": {
     "react": "^19.2.0",
