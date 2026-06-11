@@ -72,12 +72,9 @@ function ImageCarousel({ images }: { images: ProjectTypes.ProjectImage[] }) {
                   className="carousel-image"
                 />
               </div>
-
               <div className="overlay">
-                <div>
-                  <h2>{image.alt_text}</h2>
-                  <p>Image {i + 1} of {images.length}</p>
-                </div>
+                <h2>{image.alt_text}</h2>
+                <p>Image {i + 1} of {images.length}</p>
               </div>
             </div>
           ))}
@@ -89,7 +86,7 @@ function ImageCarousel({ images }: { images: ProjectTypes.ProjectImage[] }) {
           aria-label="Previous image"
           style={{ left: '10px' }}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M15 18l-6-6 6-6" />
           </svg>
         </button>
@@ -100,7 +97,7 @@ function ImageCarousel({ images }: { images: ProjectTypes.ProjectImage[] }) {
           aria-label="Next image"
           style={{ right: '10px' }}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M9 18l6-6-6-6" />
           </svg>
         </button>
