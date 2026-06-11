@@ -7,6 +7,11 @@ const AUTOPLAY_DELAY = 7000; // 7 seconds
 const TRANSITION_DURATION = 500; //0.5 Seconds
 
 function ImageCarousel({ images }: { images: ProjectTypes.ProjectImage[] }) {
+  // Don't render carousel if no images provided
+  if (!images || images.length === 0) {
+    return null;
+  }
+
   // current image being displayed
   const [index, setIndex] = useState(0);
   // if we are currently animating a transition
