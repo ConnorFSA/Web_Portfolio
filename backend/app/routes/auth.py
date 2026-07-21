@@ -29,8 +29,8 @@ def require_admin(f):
         # remove the "Bearer " prefix and strip and leading or trailing whitespace from the token
         token = auth_header.removeprefix("Bearer ").strip()
         
-        # check if the token is persent and vaid
-        if not token or verify_jwt(token):
+        # check if the token is present and valid
+        if not token or not verify_jwt(token):
             return jsonify({"error": "Unauthorized"}), 401
         
         # if all check pass call the original function, passing along any arguments and keyword arguments
@@ -42,9 +42,9 @@ def require_admin(f):
 @auth_bp.route("/login", methods=["POST"])
 def login():
     """
-    Accepts JSON {usernamr: str, password: str}
-    Returns { token: <JWT>} if the credential are valid
-            { error: ... } on faliure, always 401 not 403 to avoid confirming the username
+    Accepts JSON {username: str, password: str}
+    Returns { token: <JWT>} if the credentials are valid
+            { error: ... } on failure, always 401 not 403 to avoid confirming the username
     """
     
     data = request.get_json(silent=True)
