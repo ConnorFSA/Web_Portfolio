@@ -1,15 +1,53 @@
+import os
 from flask import Flask
 from flask_cors import CORS
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from dotenv import load_dotenv
+ 
+# Load .env before anything else so os.environ is populated when
+# services/auth.py reads JWT_SECRET etc. at import time.
+load_dotenv()
+ 
 from app.db import close_db
-from app.projects import projects_bp
+from app.routes.project import projects_bp
+from app.routes.auth import auth_bp
+from app.routes.admin_project import admin_project_bp
+ 
+ 
+def create_app():
+    app = Flask(__name__)
+    app.config["SECRET_KEY"] = os.environ.get("JWT_SECRET", "dev-fallback-key")
+ 
 
-app = Flask(__name__)
-CORS(app)
-# Register the projects blueprint
-app.register_blueprint(projects_bp)
+    ENV = os.environ.get("FLASK_ENV", "development")
+    # Configure CORS based on the environment
+    if ENV == "production":
+        # Strict Production Policy
+        FRONTEND_URL = os.environ.get("FRONTEND_ORIGIN")
+        
+        if not FRONTEND_URL:
+            raise RuntimeError("PRODUCTION ERROR: FRONTEND_ORIGIN environment variable is missing!")
+            
+        CORS(app, resources={r"/api/*": {"origins": FRONTEND_URL}})
+    else:
+        # Development Policy
+        CORS(app)
 
-# Close the database connection when the app context ends
-app.teardown_appcontext(close_db)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+ 
+    # Register blueprints
+    app.register_blueprint(projects_bp)
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(admin_project_bp)
+ 
+    # Teardown: close DB connection after every request
+    app.teardown_appcontext(close_db)
+ 
+    return app
+ 
+ 
+app = create_app()
+ 
+if __name__ == "__main__":
+    app=create_app()
+    app.run(port=5000)

@@ -7,17 +7,50 @@ PROJECT = {
     "summary":         "A Java 2D rendering engine that parses custom drawing commands from text files to rasterise geometric shapes directly to a framebuffer, demonstrated through a fully playable Snake game.",
     "start_date":      "16-12-2025",
     "end_date":        None,
-    "thumbnail_image": "/static/media/projects/java-2d-renderer/thumbnail/{}.png",
-    "url":             "https://github.com/ConnorFSA/Web_Portfolio",
+    "thumbnail_image": "/static/media/projects/java-2d-renderer/thumbnail/thumbnail.png",
+    "url":             None,
 }
 
 DESCRIPTIONS = [
-    "",
-    ""
+    (
+        "A software renderer built entirely in Java that reads a plain-text command file and "
+        "rasterises primitive shapes — lines, rectangles, circles, and filled polygons — directly "
+        "onto a framebuffer without relying on any graphics library. Each command maps to a "
+        "low-level drawing routine that manually computes which pixels to colour, giving full "
+        "control over how geometry is converted to a 2D pixel grid."
+    ),
+    (
+        "To demonstrate the renderer in a dynamic context, a custom game loop was layered on top "
+        "that clears and redraws the framebuffer on every tick at a fixed timestep. This loop "
+        "drives a fully playable Snake game where the game state is described in a text file "
+        "using the same drawing-command format, allowing the snake, food, and border to be "
+        "expressed as primitive shapes rendered each frame."
+    ),
 ]
 
 # Array fo dictionaries with image and alt_text keys
-IMAGES = []
+IMAGES = [
+    {
+        "image": "/static/media/projects/java-2d-renderer/images/snake-game-1.png",
+        "alt_text": "Screenshot of the Snake game running with the Java 2D renderer"
+    },
+    {
+        "image": "/static/media/projects/java-2d-renderer/images/snake-game-2.png",
+        "alt_text": "Screenshot of the Snake game running with the Java 2D renderer with the snake crossing the screen edge and appearing on the opposite side"
+    },
+    {
+        "image": "/static/media/projects/java-2d-renderer/images/snake-game-3.png",
+        "alt_text": "Screenshot of the Snake game running with the Java 2D renderer with alternate map size"
+    },
+    {
+        "image": "/static/media/projects/java-2d-renderer/images/framebuffer-draw-command.png",
+        "alt_text": "Example of primitive shapes being drawn to the framebuffer"
+    },
+    {
+        "image": "/static/media/projects/java-2d-renderer/images/pixel-art.png",
+        "alt_text": "Example of pixel art created with the Java 2D renderer"
+    }
+]
 
 LANGUAGES   = ["Java"]
 CATEGORIES  = ["Graphics Programming", "Game Development"]
@@ -54,6 +87,7 @@ def seed(db_path):
     for typ in NEW_TYPES:
         cur.execute("INSERT OR IGNORE INTO types (type) VALUES (?)", (typ,))
 
+    
     # Insert project
     cur.execute("""
         INSERT INTO projects (name, slug, summary, start_date, end_date, thumbnail_image, url)

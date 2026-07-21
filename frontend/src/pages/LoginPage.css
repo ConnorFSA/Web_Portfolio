@@ -1,0 +1,100 @@
+/* LoginPage.css — scoped styles for the admin login page.
+   Uses the same CSS custom properties as the rest of the app (index.css). */
+ 
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 2rem;
+}
+ 
+.login-card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--color-background-secondary);
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg, 12px);
+  padding: 2.5rem 2rem;
+}
+ 
+.login-title {
+  margin: 0 0 2rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+ 
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+ 
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+ 
+.login-label {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+ 
+.login-input {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  color: var(--color-text-primary);
+  background: var(--color-background-primary);
+  border: 1px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-md, 8px);
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+ 
+.login-input:focus {
+  border-color: var(--color-border-primary);
+}
+ 
+.login-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+ 
+.login-error {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-danger);
+  text-align: center;
+}
+ 
+.login-button {
+  margin-top: 0.5rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--color-background-primary);
+  background: var(--color-text-primary);
+  border: none;
+  border-radius: var(--border-radius-md, 8px);
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+ 
+.login-button:hover:not(:disabled) {
+  opacity: 0.85;
+}
+ 
+.login-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
