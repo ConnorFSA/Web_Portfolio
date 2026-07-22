@@ -19,15 +19,15 @@ DESCRIPTIONS = [
 # Array fo dictionaries with image and alt_text keys
 IMAGES = []
 
-LANGUAGES   = ["JavaScript", "TypeScript", "Python", "SQL", "CSS"]
-CATEGORIES  = ["Web Development", "Full Stack", "CI/CD", "REST"]
-TYPES       = ["Web App"]
-
-# New shared entries — skipped automatically if they already exist
-# array of dictionaries with a langauge key and image_icon key
-NEW_LANGUAGES = []
-NEW_CATEGORIES = ["Web Development", "Full Stack", "CI/CD", "REST"]
-NEW_TYPES      = ["Web App"]
+LANGUAGES = [
+    {"language": "JavaScript", "image_icon": "/static/media/icons/svg/languages/javascript.svg"},
+    {"language": "TypeScript", "image_icon": "/static/media/icons/svg/languages/typescript.svg"},
+    {"language": "Python", "image_icon": "/static/media/icons/svg/languages/python.svg"},
+    {"language": "SQL", "image_icon": ""},
+    {"language": "CSS", "image_icon": "/static/media/icons/svg/languages/css.svg"},
+]
+CATEGORIES = ["Web Development", "Full Stack", "CI/CD", "REST"]
+TYPES = ["Web App"]
 
 
 # Main insert functionality: takes data from above and enters it into database
@@ -37,71 +37,136 @@ from pathlib import Path
 
 DB_PATH = Path(__file__).parent.parent.parent.parent / "db/projects.db"
 
+
+def upsert_language(cur, language, image_icon=None):
+    cur.execute(
+        """
+        INSERT INTO languages (language, image_icon)
+        VALUES (?, ?)
+        ON CONFLICT(language) DO UPDATE SET
+            image_icon = excluded.image_icon
+        """,
+        (language, image_icon)
+    )
+
+
+def upsert_category(cur, category):
+    cur.execute(
+        """
+        INSERT INTO categories (category)
+        VALUES (?)
+        ON CONFLICT(category) DO NOTHING
+        """,
+        (category,)
+    )
+
+
+def get_or_create_type(cur, type_name):
+    existing = cur.execute(
+        "SELECT pk_type FROM types WHERE type = ? LIMIT 1",
+        (type_name,)
+    ).fetchone()
+
+    if existing is not None:
+        return existing[0]
+
+    cur.execute(
+        "INSERT INTO types (type) VALUES (?)",
+        (type_name,)
+    )
+    return cur.execute(
+        "SELECT pk_type FROM types WHERE type = ? LIMIT 1",
+        (type_name,)
+    ).fetchone()[0]
+
+
 def seed(db_path):
     print(str(DB_PATH))
-    
+
     con = sqlite3.connect(db_path)
     cur = con.cursor()
 
-    # Insert shared data, skip if already exists
-    for lang in NEW_LANGUAGES:
-        cur.execute("INSERT OR IGNORE INTO languages (language, image_icon) VALUES (?, ?)",
-                    (lang["language"], lang["image_icon"]))
+    for lang in LANGUAGES:
+        upsert_language(cur, lang["language"], lang.get("image_icon"))
 
-    for cat in NEW_CATEGORIES:
-        cur.execute("INSERT OR IGNORE INTO categories (category) VALUES (?)", (cat,))
+    for cat in CATEGORIES:
+        upsert_category(cur, cat)
 
-    for typ in NEW_TYPES:
-        cur.execute("INSERT OR IGNORE INTO types (type) VALUES (?)", (typ,))
+    for typ in TYPES:
+        get_or_create_type(cur, typ)
 
-    # Insert project
-    cur.execute("""
+    cur.execute(
+        """
         INSERT INTO projects (name, slug, summary, start_date, end_date, thumbnail_image, url)
         VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, (
-        PROJECT["name"], PROJECT["slug"], PROJECT["summary"],
-        PROJECT["start_date"], PROJECT["end_date"],
-        PROJECT["thumbnail_image"], PROJECT["url"]
-    ))
+        ON CONFLICT(slug) DO UPDATE SET
+            name = excluded.name,
+            summary = excluded.summary,
+            start_date = excluded.start_date,
+            end_date = excluded.end_date,
+            thumbnail_image = excluded.thumbnail_image,
+            url = excluded.url
+        """,
+        (
+            PROJECT["name"], PROJECT["slug"], PROJECT["summary"],
+            PROJECT["start_date"], PROJECT["end_date"],
+            PROJECT["thumbnail_image"], PROJECT["url"]
+        )
+    )
 
     project_id = cur.execute(
-        "SELECT pk_project FROM projects WHERE slug = ?", (PROJECT["slug"],)
+        "SELECT pk_project FROM projects WHERE slug = ?",
+        (PROJECT["slug"],)
     ).fetchone()[0]
 
-    # Descriptions
+    cur.execute("DELETE FROM project_descriptions WHERE fk_project = ?", (project_id,))
+    cur.execute("DELETE FROM images WHERE fk_project = ?", (project_id,))
+    cur.execute("DELETE FROM project_languages WHERE fk_project = ?", (project_id,))
+    cur.execute("DELETE FROM project_categories WHERE fk_project = ?", (project_id,))
+    cur.execute("DELETE FROM project_types WHERE fk_project = ?", (project_id,))
+
     for desc in DESCRIPTIONS:
-        cur.execute("INSERT INTO project_descriptions (fk_project, description) VALUES (?, ?)",
-                    (project_id, desc))
+        cur.execute(
+            "INSERT INTO project_descriptions (fk_project, description) VALUES (?, ?)",
+            (project_id, desc)
+        )
 
-    # Images
     for img in IMAGES:
-        cur.execute("INSERT INTO images (fk_project, image, alt_text) VALUES (?, ?, ?)",
-                    (project_id, img["image"], img["alt_text"]))
+        cur.execute(
+            "INSERT INTO images (fk_project, image, alt_text) VALUES (?, ?, ?)",
+            (project_id, img["image"], img["alt_text"])
+        )
 
-    # Junction tables — look up PKs by name automatically
     for lang in LANGUAGES:
         lang_id = cur.execute(
-            "SELECT pk_language FROM languages WHERE language = ?", (lang,)
+            "SELECT pk_language FROM languages WHERE language = ?",
+            (lang["language"],)
         ).fetchone()[0]
-        cur.execute("INSERT INTO project_languages (fk_project, fk_language) VALUES (?, ?)",
-                    (project_id, lang_id))
+        cur.execute(
+            "INSERT INTO project_languages (fk_project, fk_language) VALUES (?, ?)",
+            (project_id, lang_id)
+        )
 
     for cat in CATEGORIES:
         cat_id = cur.execute(
-            "SELECT pk_category FROM categories WHERE category = ?", (cat,)
+            "SELECT pk_category FROM categories WHERE category = ?",
+            (cat,)
         ).fetchone()[0]
-        cur.execute("INSERT INTO project_categories (fk_project, fk_category) VALUES (?, ?)",
-                    (project_id, cat_id))
+        cur.execute(
+            "INSERT INTO project_categories (fk_project, fk_category) VALUES (?, ?)",
+            (project_id, cat_id)
+        )
 
     for typ in TYPES:
-        type_id = cur.execute(
-            "SELECT pk_type FROM types WHERE type = ?", (typ,)
-        ).fetchone()[0]
-        cur.execute("INSERT INTO project_types (fk_project, fk_type) VALUES (?, ?)",
-                    (project_id, type_id))
+        type_id = get_or_create_type(cur, typ)
+        cur.execute(
+            "INSERT INTO project_types (fk_project, fk_type) VALUES (?, ?)",
+            (project_id, type_id)
+        )
 
     con.commit()
     con.close()
     print(f"Seeded: {PROJECT['name']}")
+
 
 seed(DB_PATH)
