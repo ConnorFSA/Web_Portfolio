@@ -99,13 +99,6 @@ export default function Home() {
         <div className='skill-card'>
           <div
             className='social-links'
-            onClick={() => window.open('mailto:connor.d.freebairn04@gmail.com')}
-          >
-            <NameTag tag='Email: connor.d.freebairn04@gmail.com' svgIcon='https://cdn.simpleicons.org/gmail' />
-          </div>
-
-          <div
-            className='social-links'
             onClick={() => window.open('https://www.linkedin.com/in/connor-freebairn/')}
           >
             <NameTag tag='LinkedIn: Connor Freebairn' />

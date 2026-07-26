@@ -4,10 +4,14 @@
   align-items: stretch;
   flex-grow: 1;
   gap: var(--sp-4);
+  width: 100%;
+  max-width: 100%;
 }
 
 .content {
   flex-grow: 1;
+  width: 100%;
+  min-width: 0;
 }
 
 .skill-card {

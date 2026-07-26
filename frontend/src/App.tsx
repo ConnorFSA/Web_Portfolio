@@ -21,26 +21,30 @@ export default function App() {
     // AuthProvider wraps everything so useAuth() works in Header too
     <AuthProvider>
       <BrowserRouter>
-        <Header />
-        <Routes>
-          {/* public routes*/}
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+        <div className="app">
+          <Header />
+          <main>
+            <Routes>
+              {/* public routes*/}
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/projects/:slug" element={<ProjectDetailPage />} />
 
-          {/*Admin routes*/}
-          <Route path="/admin/login" element={<LoginPage />} />
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-        <Footer />
+              {/*Admin routes*/}
+              <Route path="/admin/login" element={<LoginPage />} />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute>
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
       </BrowserRouter>
     </AuthProvider>
   );
