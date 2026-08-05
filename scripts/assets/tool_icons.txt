@@ -1,0 +1,8 @@
+Git,git
+GitHub,github
+GitLab,gitlab
+Linux,Linux
+Unity,Unity
+Unreal Engine,unrealengine
+VSCode,
+AWS,

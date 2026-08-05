@@ -8,8 +8,8 @@ import NameTag from '../components/generic/NameTag.tsx';
 
 export default function Home() {
   const featureProject1 = useProjectBrief('web-portfolio');
-  const featureProject2 = useProjectBrief('project-beta');
-  const featureProject3 = useProjectBrief('project-gamma');
+  const featureProject2 = useProjectBrief('java-2d-renderer');
+  const featureProject3 = useProjectBrief('vr-aviation-learning-tool');
 
   const tools: string[] = ['VSCode', 'Git'];
   const languages: string[] = ['Python', 'JavaScript', 'OpenJDK', 'Typescript'];
@@ -26,8 +26,7 @@ export default function Home() {
           description='A curated collection of the projects I have built across web development, 
           graphics programming, and software engineering. I am a developer with a passion for building things from the ground up, 
           whether that is a full-stack web application, a custom rendering engine, or the infrastructure that keeps it all running. 
-          This site is built with React, TypeScript, Flask, and SQLite, and is continuously updated with new projects, content, and improvements to the site itself.'
-          imageUrl='https://picsum.photos/300/300' />
+          This site is built with React, TypeScript, Flask, and SQLite, and is continuously updated with new projects, content, and improvements to the site itself.'/>
       </div>
 
       <div className="content">
@@ -38,10 +37,7 @@ export default function Home() {
           and the full development lifecycle, from writing application logic to configuring the infrastructure that serves it in production. 
           I am driven by a genuine curiosity for how things work under the hood, 
           and I take pride in building projects from the ground up with a focus on quality, 
-          maintainability, and continuous improvement.'
-          imageUrl='https://picsum.photos/300/300'
-          imagePosition='left'
-          imageAlt='' />
+          maintainability, and continuous improvement.'/>
       </div>
 
 

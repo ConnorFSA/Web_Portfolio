@@ -9,7 +9,7 @@ export default function About() {
         <TitleBanner
           title='About Me'
           subtitle='Learn more about my background and experience'
-          imageUrl='https://picsum.photos/300/300'
+          imageUrl='static/media/about/STEM_Event-305.JPG'
         />
       </div>
       <div className="content">
