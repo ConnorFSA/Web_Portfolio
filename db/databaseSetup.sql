@@ -16,6 +16,13 @@ CREATE TABLE IF NOT EXISTS languages (
   image_icon    TEXT
 );
 
+-- Table of tools used by projects
+CREATE TABLE IF NOT EXISTS tools (
+  pk_tool       INTEGER PRIMARY KEY AUTOINCREMENT,
+  tool          TEXT NOT NULL UNIQUE,
+  image_icon    TEXT
+);
+
 -- Stores each languages used in each proeject
 CREATE TABLE IF NOT EXISTS project_languages (
   fk_project     INTEGER NOT NULL,

@@ -35,6 +35,12 @@ Table languages {
   image_icon string
 }
 
+Table tools {
+  pk_tool integer
+  tool string
+  image_icon string
+}
+
 Table project_summaries {
   pk_project_summary integer
   fk_project integer

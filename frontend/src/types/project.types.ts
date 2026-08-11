@@ -70,3 +70,9 @@ export interface Category {
 export interface Type {
   type: string;
 }
+
+export interface Tool {
+  id: number;
+  tool: string;
+  image_url: string;
+}

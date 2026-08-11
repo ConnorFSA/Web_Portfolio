@@ -4,6 +4,8 @@ import { useProjectBrief } from '../hooks/useProjectBrief.ts';
 import './PageLayout.css';
 import '../components/projects/ProjectList.css';
 import NameTag from '../components/generic/NameTag.tsx';
+import { useLanguages } from '../hooks/useLanguages.ts';
+import { useTools } from '../hooks/useTools.ts';
 
 
 export default function Home() {
@@ -11,10 +13,8 @@ export default function Home() {
   const featureProject2 = useProjectBrief('java-2d-renderer');
   const featureProject3 = useProjectBrief('vr-aviation-learning-tool');
 
-  const tools: string[] = ['VSCode', 'Git'];
-  const languages: string[] = ['Python', 'JavaScript', 'OpenJDK', 'Typescript'];
-  const frameworks: string[] = ['React', 'Flask'];
-  const otherSkills: string[] = ['SQLite', 'Linux', 'Jira', 'UnrealEngine', 'Unity'];
+  const languageList = useLanguages();
+  const toolList = useTools();
 
   return (
     <div className="page">
@@ -55,38 +55,51 @@ export default function Home() {
       <div className="content">
         <TitleBanner title='Tech Stack / Skills' />
         <div className='skill-card'>
+          
           <div className='skill-section'>
-            <h3 className='skill-heading'>Tools</h3>
-            <div className='skill-tags'>
-              {tools.map((tool, index) => (
-                <NameTag key={index} tag={tool} svgIcon={'https://cdn.simpleicons.org/' + tool} />
-              ))}
-            </div>
+            <h3 className='skill-heading'>Languages & frameworks</h3>
+            {(() => {
+              if (languageList.loading) {
+                return <p>Loading</p>
+              }
+              if (languageList.error) {
+                return <p>Error: {languageList.error.message}</p>
+              }
+              if (!languageList.languages) {
+                return <p>No languages found</p>
+              }
+              return (
+                <div className='skill-tags'>
+                  {languageList.languages.map((lang, index) => (
+                    <NameTag key={index} tag={lang.language} svgIcon={lang.image_url} />
+                  ))}
+                </div>
+              )
+            })()}
           </div>
+
           <div className='skill-section'>
-            <h3 className='skill-heading'>Languages</h3>
-            <div className='skill-tags'>
-              {languages.map((language, index) => (
-                <NameTag key={index} tag={language} svgIcon={'https://cdn.simpleicons.org/' + language} />
-              ))}
-            </div>
+            <h3 className='skill-heading'>Tools & Services</h3>
+            {(() => {
+              if (toolList.loading) {
+                return <p>Loading</p>
+              }
+              if (toolList.error) {
+                return <p>Error: {toolList.error.message}</p>
+              }
+              if (!toolList.tools) {
+                return <p>No tools found</p>
+              }
+              return (
+                <div className='skill-tags'>
+                  {toolList.tools.map((tool, index) => (
+                    <NameTag key={index} tag={tool.tool} svgIcon={tool.image_url} />
+                  ))}
+                </div>
+              )
+            })()}
           </div>
-          <div className='skill-section'>
-            <h3 className='skill-heading'>Frameworks</h3>
-            <div className='skill-tags'>
-              {frameworks.map((framework, index) => (
-                <NameTag key={index} tag={framework} svgIcon={'https://cdn.simpleicons.org/' + framework} />
-              ))}
-            </div>
-          </div>
-          <div className='skill-section'>
-            <h3 className='skill-heading'>Other Skills</h3>
-            <div className='skill-tags'>
-              {otherSkills.map((other, index) => (
-                <NameTag key={index} tag={other} svgIcon={'https://cdn.simpleicons.org/' + other} />
-              ))}
-            </div>
-          </div>
+          
         </div>
       </div>
 

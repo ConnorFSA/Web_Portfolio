@@ -14,6 +14,7 @@ from app.routes.project import projects_bp
 from app.routes.auth import auth_bp
 from app.routes.admin_project import admin_project_bp
 from app.routes.languages import languages_bp
+from app.routes.tools import tools_bp
  
  
 def create_app():
@@ -39,7 +40,8 @@ def create_app():
     # Register blueprints
     app.register_blueprint(projects_bp)
     app.register_blueprint(auth_bp)
-    app.reguster_blueprint(languages_bp)
+    app.register_blueprint(languages_bp)
+    app.register_blueprint(tools_bp)
     app.register_blueprint(admin_project_bp)
  
     # Teardown: close DB connection after every request
