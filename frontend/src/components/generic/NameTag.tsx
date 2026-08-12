@@ -10,7 +10,14 @@ interface NameTagProps {
 function NameTag({ tag, svgIcon, size = 'md', className = '' }: NameTagProps) {
   return (
     <div className={`name-tag name-tag--${size} ${className}`.trim()}>
-      {svgIcon && <img className="icon" src={svgIcon} alt={`${tag} icon`} />}
+      {svgIcon && (
+        <span
+          className="icon"
+          role="img"
+          aria-label={`${tag} icon`}
+          style={{ maskImage: `url(${svgIcon})`, WebkitMaskImage: `url(${svgIcon})` }}
+        />
+      )}
       <p>{tag}</p>
     </div>
   );
