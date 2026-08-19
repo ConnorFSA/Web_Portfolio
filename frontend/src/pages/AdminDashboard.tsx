@@ -7,6 +7,7 @@ import { useAuth } from "../context/authContext";
 import { getProjects } from "../api/projects";
 import type { ProjectBrief } from "../types/project.types";
 import "./AdminDashboard.css";
+import { NavLink } from "react-router-dom";
  
 export default function AdminDashboard() {
   const { logout } = useAuth();
@@ -51,14 +52,12 @@ export default function AdminDashboard() {
                 </div>
                 <div className="admin-project-actions">
                   {/* TODO wire up edit functionality */}
-                  <button
+                  <NavLink
+                    to={`/admin/projects/${project.slug}/edit`}
                     className="admin-action-btn"
-                    onClick={() =>
-                      alert(`Edit "${project.name}" functionality not implemented yet`)
-                    }
                   >
                     Edit
-                  </button>
+                  </NavLink>
                 </div>
               </li>
             ))}

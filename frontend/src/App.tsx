@@ -13,6 +13,7 @@ import ProjectDetailPage from "./pages/ProjectDetailPage";
 // admin pages
 import LoginPage from "./pages/LoginPage";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminProjectEdit from "./pages/AdminProjectEdit";
 
 import "./App.css";
 
@@ -41,6 +42,14 @@ export default function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/admin/projects/:slug/edit"
+                element={
+                  <ProtectedRoute>
+                    <AdminProjectEdit />
+                  </ProtectedRoute>}
+              />
+              
             </Routes>
           </main>
           <Footer />

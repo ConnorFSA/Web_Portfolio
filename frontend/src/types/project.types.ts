@@ -12,7 +12,7 @@ export interface Project {
   end_date: Date;
 
   summary: string;
-  descriptions: Descriptions[];
+  blocks: ProjectBlock[];
 
   categories: Category[];
   languages: Language[];
@@ -39,8 +39,11 @@ export interface ProjectBrief {
   thumbnail: ProjectThumbnail;
 }
 
-export interface Descriptions {
-  description: string;
+export interface ProjectBlock {
+  id: number;
+  type: string;
+  position: number;
+  config: any;
 }
 
 export interface ProjectImage {

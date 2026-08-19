@@ -78,3 +78,15 @@ CREATE TABLE IF NOT EXISTS project_descriptions (
   description TEXT,
   FOREIGN KEY (fk_project) REFERENCES projects(pk_project)
 );
+
+-- Stores ordered content blocks for project detail pages
+CREATE TABLE IF NOT EXISTS components (
+  pk_component INTEGER PRIMARY KEY AUTOINCREMENT,
+  project_id INTEGER NOT NULL,
+  position INTEGER NOT NULL,
+  type TEXT NOT NULL,
+  config TEXT NOT NULL,
+  created_at TEXT DEFAULT (datetime('now')),
+  updated_at TEXT DEFAULT (datetime('now')),
+  FOREIGN KEY (project_id) REFERENCES projects(pk_project)
+);

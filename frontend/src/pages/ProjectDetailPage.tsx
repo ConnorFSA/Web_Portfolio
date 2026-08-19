@@ -1,13 +1,12 @@
 import { useParams } from 'react-router-dom';
 import NameTag from "../components/generic/NameTag.tsx";
+import ProjectBlockRenderer from "../components/projects/ProjectBlockRenderer.tsx";
 import "./ProjectDetailPage.css";
-import ImageCarousel from '../components/generic/ImageCarousel.tsx';
 import TitleBanner from '../components/generic/TitleBanner.tsx';
 
 import { useProjectDetail } from "../hooks/useProjectDetail.ts";
 
 function ProjectDetailPage() {
-
   const { slug } = useParams<{ slug: string }>();
 
   if (!slug) return <p>Project identifier null or invalid</p>;
@@ -17,23 +16,16 @@ function ProjectDetailPage() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error... {error.message}</p>;
   if (!project) return <p>Project not found</p>;
-
-  project
-
-  { console.log(project.descriptions) };
   return (
     <div>
-      <TitleBanner title={project.name} subtitle={project.summary} imageUrl={project.thumbnail.url} imageAlt={project.thumbnail.alt_text} />
+      <TitleBanner
+        title={project.name}
+        subtitle={project.summary}
+        imageUrl={project.thumbnail.url}
+        imageAlt={project.thumbnail.alt_text}
+      />
 
-      {project.descriptions.map((desc) => (
-        <div className="description-container">
-          <TitleBanner description={desc.description} />
-        </div>
-      ))}
-
-      <div className="carousel-container">
-        <ImageCarousel images={project.images} />
-      </div>
+      <ProjectBlockRenderer blocks={project.blocks} />
 
       <div className="meta-card-row">
         <section className="meta-card">
@@ -60,7 +52,7 @@ function ProjectDetailPage() {
         <NameTag tag={project.type} />
       </div>
     </div>
-  )
+  );
 }
 
 export default ProjectDetailPage;

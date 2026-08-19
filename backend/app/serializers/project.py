@@ -12,9 +12,10 @@ def serialize_project_card(project_row, languages, categories, type_value):
     return project
 
 
-def serialize_project_detail(project_row, descriptions, languages, categories, images, type_value):
+def serialize_project_detail(project_row, blocks, languages, categories, images, type_value):
     project = dict(project_row)
-    project["descriptions"] = descriptions
+    project["id"] = project.pop("pk_project")
+    project["blocks"] = blocks
     project["languages"] = languages
     project["categories"] = categories
     project["images"] = images

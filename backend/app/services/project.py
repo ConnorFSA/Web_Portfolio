@@ -1,6 +1,5 @@
 from app.data_access.project import (
     get_categories_for_project,
-    get_descriptions_for_project,
     get_images_for_project,
     get_languages_for_project,
     get_project_by_slug_raw,
@@ -8,6 +7,7 @@ from app.data_access.project import (
     get_projects_raw,
     get_type_for_project,
 )
+from app.services.component import get_resolved_components_for_project
 from app.serializers.project import (
     serialize_project_card,
     serialize_project_detail,
@@ -37,7 +37,7 @@ def get_project_by_slug(db, slug):
     project_id = row["pk_project"]
     return serialize_project_detail(
         row,
-        get_descriptions_for_project(db, project_id),
+        get_resolved_components_for_project(db, project_id),
         get_languages_for_project(db, project_id),
         get_categories_for_project(db, project_id),
         get_images_for_project(db, project_id),
