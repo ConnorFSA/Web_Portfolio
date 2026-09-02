@@ -52,6 +52,10 @@
   letter-spacing: 0.06em;
 }
 
+.admin-section-title + .admin-action-btn {
+  margin-bottom: 1rem;
+}
+
 .admin-status {
   margin: 0;
   font-size: 0.9375rem;

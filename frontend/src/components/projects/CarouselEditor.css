@@ -1,0 +1,99 @@
+.carousel-editor {
+  display: grid;
+  gap: 1.5rem;
+  min-width: min(680px, 78vw);
+}
+
+.carousel-editor h3 {
+  margin: 0 0 0.75rem;
+}
+
+.carousel-editor-list,
+.carousel-editor-available {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0;
+  margin: 0;
+}
+
+.carousel-editor-item,
+.available-image {
+  display: grid;
+  grid-template-columns: 64px 1fr auto auto auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.carousel-editor-item {
+  padding: 0.5rem;
+  border: 1px solid var(--color-border-tertiary, var(--border));
+  border-radius: var(--border-radius-md, 8px);
+  list-style-position: inside;
+}
+
+.carousel-editor-item img,
+.available-image img {
+  width: 64px;
+  height: 48px;
+  object-fit: cover;
+  border: 1px solid var(--color-border-secondary, var(--border));
+  border-radius: var(--border-radius-md, 8px);
+}
+
+.available-image {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border-secondary, var(--border));
+  border-radius: var(--border-radius-md, 8px);
+  background: var(--color-background-secondary, var(--bg-elevated));
+  color: inherit;
+}
+
+.available-image button {
+  justify-self: end;
+}
+
+.carousel-editor-upload {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.carousel-editor-upload label {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.carousel-editor-upload input:not([type='file']) {
+  width: 100%;
+  min-height: 2.25rem;
+  padding: 0.5rem 0.625rem;
+  color: var(--color-text-primary, var(--text));
+  background: var(--color-background-primary, var(--bg));
+  border: 1px solid var(--color-border-secondary, var(--border));
+  border-radius: var(--border-radius-md, 8px);
+  font: inherit;
+}
+
+.carousel-editor-upload input:not([type='file']):focus {
+  border-color: var(--color-border-primary, var(--border));
+  outline: none;
+}
+
+@media (max-width: 620px) {
+  .carousel-editor {
+    min-width: 0;
+  }
+
+  .carousel-editor-item {
+    grid-template-columns: 48px 1fr auto;
+  }
+
+  .available-image {
+    grid-template-columns: 48px minmax(0, 1fr) auto;
+  }
+
+  .carousel-editor-item img {
+    width: 48px;
+    height: 40px;
+  }
+}

@@ -1,56 +1,37 @@
 import { useParams } from 'react-router-dom';
-import NameTag from "../components/generic/NameTag.tsx";
-import ProjectBlockRenderer from "../components/projects/ProjectBlockRenderer.tsx";
-import "./ProjectDetailPage.css";
+import ProjectBlockRenderer from '../components/projects/ProjectBlockRenderer.tsx';
+import ProjectMetadataCard from '../components/projects/ProjectMetadataCard.tsx';
+import './ProjectDetailPage.css';
+import './PageLayout.css';
 import TitleBanner from '../components/generic/TitleBanner.tsx';
 
-import { useProjectDetail } from "../hooks/useProjectDetail.ts";
+import { useProjectDetail } from '../hooks/useProjectDetail.ts';
 
 function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
+  const { project, loading, error } = useProjectDetail(slug ?? '');
 
   if (!slug) return <p>Project identifier null or invalid</p>;
-
-  const { project, loading, error } = useProjectDetail(slug);
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error... {error.message}</p>;
   if (!project) return <p>Project not found</p>;
+
   return (
-    <div>
-      <TitleBanner
-        title={project.name}
-        subtitle={project.summary}
-        imageUrl={project.thumbnail.url}
-        imageAlt={project.thumbnail.alt_text}
-      />
+    <div className="page page--project-detail">
+      <div className="content-spacing content-spacing--hero">
+        <TitleBanner
+          title={project.name}
+          subtitle={project.summary}
+          imageUrl={project.thumbnail.url}
+          imageAlt={project.thumbnail.alt_text}
+        />
+      </div>
+
+      <div className="content-spacing">
+        <ProjectMetadataCard project={project} />
+      </div>
 
       <ProjectBlockRenderer blocks={project.blocks} />
-
-      <div className="meta-card-row">
-        <section className="meta-card">
-          <h3>Categories</h3>
-          <div className="tag-row">
-            {project.categories.map((cat, index) => (
-              <NameTag key={index} tag={cat.category} />
-            ))}
-          </div>
-        </section>
-
-        <section className="meta-card">
-          <h3>Languages</h3>
-          <div className="tag-row">
-            {project.languages.map((lang, index) => (
-              <NameTag key={index} tag={lang.language} svgIcon={lang.image_url} />
-            ))}
-          </div>
-        </section>
-      </div>
-
-      <div className="project-type-card">
-        <p>Type</p>
-        <NameTag tag={project.type} />
-      </div>
     </div>
   );
 }

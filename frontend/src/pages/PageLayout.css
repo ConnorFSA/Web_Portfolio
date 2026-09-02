@@ -1,35 +1,143 @@
+/* 
+Base page layout styles for the entire application.
+*/
 .page {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   flex-grow: 1;
-  gap: var(--sp-4);
+  gap: 0;
   width: 100%;
   max-width: 100%;
+  padding: 2rem 0 4rem;
 }
-
-.content {
-  flex-grow: 1;
-  width: 100%;
+/* 
+Set the max width of the content to the container witdth if the page
+is wider than the container width, otherwise sets to 100%
+*/
+.content-spacing {
+  width: min(100%, var(--container-width));
+  margin: 0 auto;
   min-width: 0;
 }
 
+/* 
+Add vertical spacing between two content blocks
+Spacing is applied to the second block
+*/
+.content-spacing + .content-spacing {
+  margin-top: var(--space-xl);
+}
+
+.content-spacing--hero {
+  margin-top: 0.5rem;
+}
+
+.section-panel,
+.timeline-item,
+.cta-panel {
+  background: var(--bg-elevated);
+  border: var(--border-width-sm) solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 24px var(--shadow);
+}
+
+.info-panel {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.section-panel {
+  padding: clamp(var(--space-lg), 2vw, var(--space-xl));
+}
+
+.section-heading {
+  margin-bottom: 1.5rem;
+}
+
+/* 
+Style for small text above a section heading, typically used for section labels or categories
+*/
+.eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.section-heading h2,
+.section-heading h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.6rem, 2vw, 2.4rem);
+  line-height: 1.2;
+}
+
+.story-grid,
+.bio-grid,
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.story-grid.project-text-grid {
+  display: block;
+  width: 100%;
+}
+
+.story-grid.project-text-grid p {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.8;
+  max-width: none;
+  width: 100%;
+}
+
+.story-grid p,
+.bio-grid p,
+.info-grid p {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+/*
+Modifies teh name tag styles to be used in the skill section of the page
+Each category of tage gets its own card with a heading and a list of tags
+*/
 .skill-card {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  justify-content: center;
-  margin: 2rem auto;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin: 1.5rem auto 0;
   width: 100%;
-  max-width: var(--container-width);
 }
 
 .skill-section {
-  flex: 1 1 300px;
-  min-width: 250px;
+  flex: 1 1 290px;
+  min-width: min(100%, 250px);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 24px var(--shadow);
+  padding: 1.25rem;
 }
 
 .skill-heading {
@@ -42,15 +150,165 @@
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
-  justify-content: center;
+  gap: 0.5rem 0.75rem;
 }
 
+.skill-tags .name-tag {
+  background: transparent;
+  border-color: transparent;
+  padding: 0;
+  min-height: auto;
+  box-shadow: none;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.skill-tags .name-tag .icon {
+  opacity: 0.9;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/*
+Sytleys for the social links section, use to display a row of social links with a hover effect
+to indicate interactivity
+*/
 .social-links {
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 20px var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  cursor: pointer;
 }
 
 .social-links:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px var(--shadow-lg);
+  box-shadow: 0 10px 20px var(--shadow-lg);
+  border-color: var(--accent);
+}
+
+/*
+Timeline list and styles, used for displaying my work experience and education
+*/
+.timeline-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.timeline-item {
+  padding: 1.25rem 1.5rem;
+}
+
+.timeline-item__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-item__role,
+.timeline-item__period {
+  margin: 0;
+}
+
+.timeline-item__role {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.timeline-item__period {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.timeline-item p {
+  margin: 0;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+/* 
+call to action panel and button styles, different from the standard section panel as these
+are used to capture the attention of a viewer and guide them to a specific action,
+*/
+.cta-panel {
+  padding: 1.5rem 1.75rem;
+  text-align: center;
+}
+
+.cta-panel h2,
+.cta-panel h3 {
+  margin: 0 0 0.75rem;
+}
+
+.cta-panel p {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.cta-panel .button-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--primary);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cta-button--primary {
+  background: var(--accent);
+  border-color: transparent;
+  color: var(--bg);
+}
+
+/* 
+Layout adjustments for smaller screens, including single-column layouts
+for grids and reduced padding for the page container.
+*/
+@media (max-width: 860px) {
+  .story-grid,
+  .bio-grid,
+  .info-grid,
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 
+For smaller screens, reduce the padding of the page container and
+adjust the layout of the timeline item meta data to stack vertically.
+*/
+@media (max-width: 720px) {
+  .page {
+    padding-top: 1.25rem;
+  }
+
+  .timeline-item__meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

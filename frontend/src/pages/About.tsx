@@ -2,126 +2,160 @@ import NameTag from '../components/generic/NameTag.tsx';
 import TitleBanner from '../components/generic/TitleBanner.tsx';
 import './PageLayout.css';
 
+const experienceHistory = [
+  {
+    role: 'Administrative Service Officer — Patient Services',
+    period: 'Feb 2022 — Present',
+    description:
+      'Support multiple hospital departments with sensitive patient administration, bookings, and documentation workflows. This role strengthened my ability to work under pressure, manage operational detail, and keep information flow accurate in time-sensitive environments.',
+  },
+  {
+    role: 'Administrative Service Officer — Ward Clerk',
+    period: 'Sep 2022 — Dec 2022',
+    description:
+      'Delivered high-priority administrative support in a clinical ward environment and improved documentation procedures by creating clearer operational guidance that reduced avoidable errors and improved team consistency.',
+  },
+];
+
+const achievements = [
+  '2025 — Awarded Best Undergraduate ICT Capstone Project at the Enterprise STEM Expo.',
+  '2024 — Nominated by the University of South Australia for Golden Key, placing in the top 15% of the field.',
+  '2026 — White Ribbon Accreditation.',
+  '2018 — Venturer Scouts leadership and unit management training.',
+];
+
 export default function About() {
   return (
-    <div className="page">
-      <div className="content">
+    <div className="page page--about">
+      <div className="content-spacing content-spacing--hero">
         <TitleBanner
-          title='About Me'
-          subtitle='Learn more about my background and experience'
-          imageUrl='static/media/about/STEM_Event-305.JPG'
-        />
-      </div>
-      <div className="content">
-        <TitleBanner
-          title='Professional Bio'
-          subtitle='A brief overview of my professional background'
-          description='I am a software developer with a Bachelor of Information Technology 
-          from the University of South Australia, specialising in Games and Entertainment 
-          Design. My experience spans a range of programming languages and project types, 
-          working both independently and collaboratively as a team member and technical lead.
-          '
-        />
-      </div>
-      <div className="content">
-        <div className='card'>
-          <p className='description'>
-            I have developed software across a broad range of project types — from CLI
-            applications and web platforms to virtual reality experiences — delivered for
-            clients, as part of my studies, and as personal projects. Notable works include
-            a virtual reality experience developed for a client's PhD thesis, a 3D game built
-            in Unreal Engine, and a 2D graphics engine demonstrated through a playable Snake
-            game. These projects and more are showcased throughout this portfolio. During my
-            degree, the VR experience developed for our client was entered into the 2025 STEM
-            Expo, where the project was awarded Best Undergraduate IT Project.
-          </p>
-        </div>
-      </div>
-
-      <div className="content">
-        <TitleBanner
-          title='Skills'
-          subtitle='Technologies and tools I specialize in'
-          description='My technical skills span web development, game development, and 
-          systems programming, developed across university projects, personal work, and 
-          four years in a professional environment. Visit the Projects section to see 
-          these technologies applied in context.'
-        />
-      </div>
-      <div className="content">
-        <TitleBanner
-          title='Experience'
-          subtitle='My professional and academic background'
+          title="About me"
+          subtitle="I build software with a practical, product-focused mindset."
+          imageUrl="static/media/about/STEM_Event-305.JPG"
+          imageAlt="Connor at a STEM event"
         />
       </div>
 
-      <div className="content">
-        <div className='card'>
-          <p className='description'>Administrative Service Officer — Patient Services</p>
-          <p className='description'>Feb 2022 - Present</p>
-
-          <p className='description'>
-            Provided administrative support across multiple hospital departments including
-            Patient Services, Medical Records, Day Surgery, and Mental Health. Responsibilities
-            included managing sensitive documentation, patient bookings, and inter-department
-            information flow in compliance with privacy requirements. Identified and resolved
-            hardware, software, and workflow issues in collaboration with management, improving
-            day-to-day operational efficiency. Selected to cover Day Surgery operations during
-            staff leave, overseeing daily workflows and training incoming staff.
-          </p>
-          <p></p>
-          <p className='description'>Administrative Service Officer — Ward Clerk</p>
-          <p className='description'>Sep 2022 - Dec 2022</p>
-
-          <p className='description'>
-            Provided time-critical administrative support in a clinical ward environment.
-            Reduced errors in death certificate documentation by authoring procedural packs
-            for clinical staff, later adopted by a neighbouring hospital. Developed a
-            comprehensive digital procedure guide for the role, still maintained by current staff.
-          </p>
-        </div>
-      </div>
-
-      <div className="content">
-        <TitleBanner
-          title='Achievements'
-          subtitle='Highlights from my academic and professional journey'
-        />
-      </div>
-
-      <div className="content">
-        <div className='card'>
-          <p className='description'>2025 - Awarded Best Undergraduate ICT Capstone Project, Enterprising STEM Expo</p>
-          <p className='description'>2024 - Nominated by the University of South Australia for the Golden Key International Honour Society, ranking in the top 15% of field</p>
-          <p className='description'>2026 - White Ribbon Accreditation</p>
-          <p className='description'>2018 - Venturer Scouts leadership and unit management training</p>
-        </div>
-      </div>
-
-      <div className="content">
-        <TitleBanner title='Contacts and Socials' />
-        <div className='skill-card'>
-          <div
-            className='social-links'
-            onClick={() => window.open('mailto:connor.d.freebairn04@gmail.com')}
-          >
-            <NameTag tag='Email: connor.d.freebairn04@gmail.com' svgIcon='https://cdn.simpleicons.org/gmail' />
+      <div className="content-spacing">
+        <section className="section-panel">
+          <div className="section-heading">
+            <p className="eyebrow">Professional profile</p>
+            <h2>Solving problems with clear, maintainable systems</h2>
           </div>
 
-          <div
-            className='social-links'
-            onClick={() => window.open('https://www.linkedin.com/in/connor-freebairn/')}
-          >
-            <NameTag tag='LinkedIn: Connor Freebairn' />
+          <div className="bio-grid">
+            <p>
+              I am a software developer with a Bachelor of Information Technology from the
+              University of South Australia, specialising in Games and Entertainment Design.
+              My work spans frontend engineering, backend systems, graphics programming, and
+              interactive product development, with a consistent emphasis on clean user-focused design.
+            </p>
+            <p>
+              Throughout my studies and professional work, I have developed systems for clients,
+              coursework, and personal projects, including web platforms, virtual reality
+              experiences, and game-focused technical demonstrations. I value clean architecture,
+              thoughtful user experience, and software that is maintainable as it evolves over time.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <div className="content-spacing">
+        <section className="section-panel">
+          <div className="section-heading">
+            <p className="eyebrow">Experience</p>
+            <h2>Professional and academic background.</h2>
           </div>
 
-          <div
-            className='social-links'
-            onClick={() => window.open('https://github.com/ConnorFSA')}
-          >
-            <NameTag tag='GitHub: ConnorFSA' svgIcon='https://cdn.simpleicons.org/github/grey' />
+          <div className="timeline-list">
+            {experienceHistory.map((item) => (
+              <article key={item.role} className="timeline-item">
+                <div className="timeline-item__meta">
+                  <p className="timeline-item__role">{item.role}</p>
+                  <p className="timeline-item__period">{item.period}</p>
+                </div>
+                <p>{item.description}</p>
+              </article>
+            ))}
           </div>
-        </div>
+        </section>
+      </div>
+
+      <div className="content-spacing">
+        <section className="section-panel">
+          <div className="section-heading">
+            <p className="eyebrow">Skills</p>
+            <h2>Technical strengths across software, design, and systems.</h2>
+          </div>
+
+          <div className="info-grid">
+            <div className="info-panel">
+              <p>
+                My work spans web development, systems thinking, graphics programming, and the
+                design of interfaces that balance usability with technical effectiveness. I have
+                built projects using multiple languages and frameworks, and I enjoy translating
+                user needs into clear product decisions and reliable outcomes.
+              </p>
+            </div>
+            <div className="info-panel">
+              <p>
+                I am particularly interested in projects that combine technical problem-solving with
+                a user-focused approach, and enjoy working across the full lifecycle of a project,
+                from shaping the problem and prototyping ideas through to implementation,
+                iteration, and deployment.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div className="content-spacing">
+        <section className="section-panel">
+          <div className="section-heading">
+            <p className="eyebrow">Achievements</p>
+            <h2>Highlights from my journey.</h2>
+          </div>
+
+          <div className="timeline-list">
+            {achievements.map((achievement) => (
+              <article key={achievement} className="timeline-item">
+                <p>{achievement}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <div className="content-spacing">
+        <section className="section-panel">
+          <div className="section-heading">
+            <p className="eyebrow">Contact</p>
+            <h2>Connect with me.</h2>
+          </div>
+
+          <div className="contact-grid">
+            <div
+              className="social-links"
+              onClick={() => window.open('https://www.linkedin.com/in/connor-freebairn/')}
+            >
+              <NameTag tag='LinkedIn: Connor Freebairn' />
+            </div>
+
+            <div
+              className="social-links"
+              onClick={() => window.open('https://github.com/ConnorFSA')}
+            >
+              <NameTag tag='GitHub: ConnorFSA' svgIcon='https://cdn.simpleicons.org/github/grey' />
+            </div>
+
+            <div
+              className="social-links"
+              onClick={() => window.open('https://gitlab.com/frecd002/')}
+            >
+              <NameTag tag='GitLab: frecd002' svgIcon='https://cdn.simpleicons.org/gitlab/grey' />
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );

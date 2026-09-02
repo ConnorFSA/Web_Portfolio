@@ -43,7 +43,7 @@ function DropDownSelector({ options, option, setOption }: DropDownProps) {
       </div>
       {isOpen && (
         // create new list element for each item in - current selection
-        <ul className="item-list capsule">
+        <ul className="item-list">
           {options.map((item) => {
             if (item == option) {
               return null;

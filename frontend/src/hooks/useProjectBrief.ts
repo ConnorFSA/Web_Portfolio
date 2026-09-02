@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import {useState, useEffect} from 'react';
 import {getProjectBriefBySlug} from '../api/projects';
 import type * as ProjectTypes from '../types/project.types';
@@ -33,7 +34,7 @@ export function useProjectBrief(slug: string){
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [slug]);
 
   return { project, loading, error };
 }

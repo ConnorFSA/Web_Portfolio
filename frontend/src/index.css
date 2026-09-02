@@ -19,12 +19,24 @@
 
   /* Layout tokens */
   --radius: 12px;
+  --radius-md: 12px;
   --radius-sm: 4px;
+  --radius-lg: 20px;
   --radius-full: 999px;
-  --sp-1: 4px;
-  --sp-2: 8px;
-  --sp-3: 16px;
-  --sp-4: 24px;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  --border-width-sm: 1px;
+  --border-width-md: 2px;
+
+  --sp-1: var(--space-xs);
+  --sp-2: var(--space-sm);
+  --sp-3: var(--space-md);
+  --sp-4: var(--space-lg);
   --container-width: 1100px;
 }
 

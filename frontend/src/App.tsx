@@ -19,7 +19,8 @@ import "./App.css";
 
 export default function App() {
   return (
-    // AuthProvider wraps everything so useAuth() works in Header too
+    // The auth context sits at the application root so the header and protected
+    // admin routes can share the same authentication state without prop drilling.
     <AuthProvider>
       <BrowserRouter>
         <div className="app">

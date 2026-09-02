@@ -11,7 +11,8 @@
   font-weight: 600;
   color: var(--text);
   line-height: 1.2;
-  white-space: nowrap;
+  max-width: none;
+  overflow: hidden;
 }
 
 .name-tag--sm {
@@ -56,4 +57,14 @@
 .name-tag p {
   margin: 0;
   line-height: 1.2;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: none;
+}
+
+.name-tag--sm p {
+  max-width: none;
 }

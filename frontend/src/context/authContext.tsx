@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   createContext,
   useContext,
@@ -21,11 +22,13 @@ import type { AuthContextType, LoginCredentials } from "../types/auth.types";
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({children}: {children: ReactNode}) {
-  // track if a user is logged in as an admin and if the auth state is still loading
+  // Authentication state is kept in one provider so protected routes and the
+  // header can react consistently to login and logout events.
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // check if the user has a valid admin JWT token on initial load
+  // The app validates any persisted token on first render so the UI reflects the
+  // server's current auth state before the user interacts with protected routes.
   useEffect(() => {
     verifyAdmin()
       .then((valid) => setIsAdmin(valid))
@@ -54,7 +57,8 @@ export function AuthProvider({children}: {children: ReactNode}) {
     setIsAdmin(false);
   }, []);
 
-  // provide the auth state and functions to the rest of the app
+  // Exposing the auth state and handlers through context keeps the component tree
+  // decoupled from direct localStorage and API logic.
   return (
     <AuthContext.Provider value={{ isAdmin, loading, login, logout}}>
       {children}

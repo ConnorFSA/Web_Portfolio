@@ -5,17 +5,19 @@ export interface Project {
   name: string;
   slug: string;
 
-  type: string;
+  type: string | null;
   url: string;
 
-  start_date: Date;
-  end_date: Date;
+  start_date: string | null;
+  end_date: string | null;
 
   summary: string;
   blocks: ProjectBlock[];
 
   categories: Category[];
   languages: Language[];
+  tools: Tool[];
+  type_ids?: number[];
 
   images: ProjectImage[];
   thumbnail: ProjectThumbnail;
@@ -26,12 +28,12 @@ export interface ProjectBrief {
   name: string;
   slug: string;
 
-  type: Type;
+  type: Type | null;
 
   summary: string;
 
-  start_date: Date;
-  end_date: String;
+  start_date: string | null;
+  end_date: string | null;
 
   categories: Category[];
   languages: Language[];
@@ -43,7 +45,12 @@ export interface ProjectBlock {
   id: number;
   type: string;
   position: number;
-  config: any;
+  config: {
+    text?: string;
+    image_ids?: Array<number | string>;
+    images?: ProjectImage[];
+    [key: string]: unknown;
+  };
 }
 
 export interface ProjectImage {
@@ -59,6 +66,7 @@ export interface ProjectThumbnail {
 }
 
 export interface Language {
+  id?: number;
   language: string;
   image_url: string;
 
@@ -66,11 +74,13 @@ export interface Language {
 
 // Categories are what a project is about, related to or uses
 export interface Category {
+  id?: number;
   category: string;
 }
 
 // Types define the overarching classification "Personal", "Work", "Academic" etc
 export interface Type {
+  id?: number;
   type: string;
 }
 

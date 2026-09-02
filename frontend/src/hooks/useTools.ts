@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useState, useEffect } from 'react';
 import type { Tool } from '../types/project.types';
 import { getTools } from '../api/languages&tools';

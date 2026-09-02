@@ -1,5 +1,5 @@
 import type * as ProjectTypes from '../../types/project.types';
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, type CSSProperties } from "react";
 import ImageLoader from './ImageLoader';
 import "./ImageCarousel.css";
 
@@ -7,11 +7,6 @@ const AUTOPLAY_DELAY = 7000; // 7 seconds
 const TRANSITION_DURATION = 500; //0.5 Seconds
 
 function ImageCarousel({ images }: { images: ProjectTypes.ProjectImage[] }) {
-  // Don't render carousel if no images provided
-  if (!images || images.length === 0) {
-    return null;
-  }
-
   // current image being displayed
   const [index, setIndex] = useState(0);
   // if we are currently animating a transition
@@ -21,15 +16,17 @@ function ImageCarousel({ images }: { images: ProjectTypes.ProjectImage[] }) {
 
   // length of image array
   const count = images.length;
+  const safeIndex = Math.min(index, Math.max(count - 1, 0));
 
   // generic function to go forward or backwards
   const go = useCallback((direction: 1 | -1) => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    // calculate the next index and wrap around
-    // setIndex hook populates prevIndex with the current index value
-    // add count to ensurte we dont get negative values
-    setIndex(prevIndex => (prevIndex + direction + count) % count);
+    // calculate the next index and wrap around while keeping the range valid
+    setIndex(prevIndex => {
+      const normalizedIndex = Math.min(prevIndex, Math.max(count - 1, 0));
+      return (normalizedIndex + direction + count) % count;
+    });
     // Schedule function to reset transition state
     setTimeout(() => setIsTransitioning(false), TRANSITION_DURATION);
   }, [isTransitioning, count]);
@@ -42,19 +39,21 @@ function ImageCarousel({ images }: { images: ProjectTypes.ProjectImage[] }) {
   // Timer is reset after current transition completes
   const resetTimer = useCallback(() => {
     clearInterval(autoplayRef.current);
-    if (AUTOPLAY_DELAY > 0) {
+    if (AUTOPLAY_DELAY > 0 && count > 0) {
       autoplayRef.current = setInterval(next, AUTOPLAY_DELAY);
     }
-  }, [next]);
+  }, [count, next]);
 
   // clear and resets timer/interval on index change via depencency chain go > next > resetTimer
   useEffect(() => {
     resetTimer();
     return () => clearInterval(autoplayRef.current);
-  }, [resetTimer]);
+  }, [count, resetTimer]);
+
+  if (!images || images.length === 0) return null;
 
   return (
-    <div className="carousel-root" style={{ ['--transition-ms' as any]: `${TRANSITION_DURATION}ms` }}>
+    <div className="carousel-root" style={{ '--transition-ms': `${TRANSITION_DURATION}ms` } as CSSProperties}>
       <div
         className="window"
         tabIndex={0}
@@ -64,7 +63,7 @@ function ImageCarousel({ images }: { images: ProjectTypes.ProjectImage[] }) {
         <div
           className="track"
           // when react updates the index state the css transform property is updated to shift the track left or right
-          style={{ transform: `translateX(-${index * 100}%)` }}
+          style={{ transform: `translateX(-${safeIndex * 100}%)` }}
           aria-live="polite"
         >
           {images.map((image, i) => (
@@ -116,12 +115,12 @@ function ImageCarousel({ images }: { images: ProjectTypes.ProjectImage[] }) {
             role="tab"
             // when the thumbnail is the same as current image we set aria-selected to true
             // this applies a css style to scale the thumbnail up slightly
-            aria-selected={i === index}
+            aria-selected={i === safeIndex}
             aria-label={`Go to slide ${i + 1}`}
             onClick={() => { setIndex(i); resetTimer(); }}
             // when the thumbnail is the same as the current image we set opacity to 1 otherwise 0.6
             // css transition property eases between opacity and scale chages
-            style={{ opacity: i === index ? 1 : 0.6 }}
+            style={{ opacity: i === safeIndex ? 1 : 0.6 }}
           >
             <img className="thumb-image" src={image.image} alt="" draggable={false} />
           </button>
