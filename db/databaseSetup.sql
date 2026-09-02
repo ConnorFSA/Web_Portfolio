@@ -32,6 +32,15 @@ CREATE TABLE IF NOT EXISTS project_languages (
   FOREIGN KEY (fk_language) REFERENCES languages(pk_language)
 );
 
+-- Stores each tool used by a project
+CREATE TABLE IF NOT EXISTS project_tools (
+  fk_project INTEGER NOT NULL,
+  fk_tool INTEGER NOT NULL,
+  PRIMARY KEY (fk_project, fk_tool),
+  FOREIGN KEY (fk_project) REFERENCES projects(pk_project),
+  FOREIGN KEY (fk_tool) REFERENCES tools(pk_tool)
+);
+
 -- Table of broad categories work, school, personal ect
 CREATE TABLE IF NOT EXISTS categories (
   pk_category   INTEGER PRIMARY KEY AUTOINCREMENT,

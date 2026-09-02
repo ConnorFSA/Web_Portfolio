@@ -17,13 +17,16 @@ from app.routes.languages import languages_bp
 from app.routes.tools import tools_bp
  
  
+# Application factory keeps configuration and blueprint registration in one place,
+# making the service easier to test and deploy across different environments.
 def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.environ.get("JWT_SECRET", "dev-fallback-key")
  
 
     ENV = os.environ.get("FLASK_ENV", "development")
-    # Configure CORS based on the environment
+    # Development accepts the browser directly, while production restricts access
+    # to the configured frontend origin.
     if ENV == "production":
         # Strict Production Policy
         FRONTEND_URL = os.environ.get("FRONTEND_ORIGIN")
@@ -37,14 +40,16 @@ def create_app():
         CORS(app)
 
  
-    # Register blueprints
+    # Each route group encapsulates a distinct API concern and is mounted here
+    # to keep the application structure modular and maintainable.
     app.register_blueprint(projects_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(languages_bp)
     app.register_blueprint(tools_bp)
     app.register_blueprint(admin_project_bp)
  
-    # Teardown: close DB connection after every request
+    # Closing the database connection at the end of each request prevents
+    # connection leakage and keeps the app stateless across requests.
     app.teardown_appcontext(close_db)
  
     return app

@@ -13,12 +13,17 @@ BASE_DIR = os.path.dirname(  # /home/ubuntu/Web_Portfolio
 
 DATABASE = os.path.join(BASE_DIR, 'db', 'projects.db')
 
+# A request-scoped database connection keeps the application simple while ensuring
+# each request gets a consistent connection and avoids global state.
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(DATABASE)
+        # sqlite3.Row allows us to access the columns of the result set by name instead of index
         g.db.row_factory = sqlite3.Row
     return g.db
 
+# Database resources are closed at the end of the request lifecycle to prevent
+# long lived connections and reduce the risk of stale state during development.
 def close_db(e=None):
     db = g.pop('db', None)
     if db is not None:

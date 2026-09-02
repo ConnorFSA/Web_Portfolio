@@ -5,6 +5,8 @@ from app.data_access.project import (
     get_project_by_slug_raw,
     get_project_brief_by_slug_raw,
     get_projects_raw,
+    get_tools_for_project,
+    get_type_ids_for_project,
     get_type_for_project,
 )
 from app.services.component import get_resolved_components_for_project
@@ -14,6 +16,8 @@ from app.serializers.project import (
 )
 
 
+# This service layer aggregates the raw project rows with their related metadata,
+# producing the API-ready payloads used by the frontend.
 def get_all_projects(db):
     rows = get_projects_raw(db)
     projects = []
@@ -42,6 +46,8 @@ def get_project_by_slug(db, slug):
         get_categories_for_project(db, project_id),
         get_images_for_project(db, project_id),
         get_type_for_project(db, project_id),
+        get_tools_for_project(db, project_id),
+        get_type_ids_for_project(db, project_id),
     )
 
 

@@ -1,6 +1,7 @@
 import json
 
-
+# Component access functions manage the ordered, JSON-backed content blocks that make
+# up a project's structure.
 def get_components_for_project(db, project_id):
     rows = db.execute(
         """
@@ -117,7 +118,7 @@ def delete_component(db, component_id):
     )
 
 
-def get_images_by_ids(db, image_ids):
+def get_images_by_ids(db, project_id, image_ids):
     if not image_ids:
         return []
 
@@ -126,9 +127,9 @@ def get_images_by_ids(db, image_ids):
         f"""
         SELECT pk_image AS id, image, alt_text
         FROM images
-        WHERE pk_image IN ({placeholders})
+        WHERE fk_project = ? AND pk_image IN ({placeholders})
         ORDER BY pk_image
         """,
-        tuple(image_ids),
+        (project_id, *image_ids),
     ).fetchall()
     return [dict(row) for row in rows]

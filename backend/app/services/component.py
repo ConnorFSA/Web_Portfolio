@@ -13,7 +13,8 @@ from app.data_access.component import (
 )
 from app.serializers.component import serialize_component_row
 
-
+# Component resolution merges the raw stored config with any related image metadata,
+# producing the fully hydrated objects used by the frontend detail view.
 def get_resolved_components_for_project(db, project_id):
     component_rows = get_components_for_project(db, project_id)
     image_ids = []
@@ -28,7 +29,7 @@ def get_resolved_components_for_project(db, project_id):
 
     images_by_id = {}
     if image_ids:
-        images = get_images_by_ids(db, list(dict.fromkeys(image_ids)))
+        images = get_images_by_ids(db, project_id, list(dict.fromkeys(image_ids)))
         images_by_id = {image["id"]: image for image in images}
 
     resolved = []

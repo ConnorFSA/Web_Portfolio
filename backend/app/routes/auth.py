@@ -8,6 +8,8 @@ from app.services.auth import (
 
 auth_bp = Blueprint("auth", __name__, url_prefix='/api/auth')
 
+# Route protection is handled centrally here so admin-only endpoints can share the
+# same authentication checks without repeated logic in each handler.
 def require_admin(f):
     """
     decorator to protect routes that require authentication
